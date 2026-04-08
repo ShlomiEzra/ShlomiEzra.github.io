@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>דני כהן | מאמן כושר אישי</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black: #070707;
+  --white: #f5f2ec;
+  --orange: #ff4500;
+  --orange2: #ff7000;
+  --gray: #111111;
+  --border: #1c1c1c;
+  --muted: #666;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Heebo', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; direction: rtl; }
+
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 200;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 3rem;
+  background: rgba(7,7,7,0.93); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.logo { font-size: 1.05rem; font-weight: 900; }
+.logo span { color: var(--orange); }
+.nav-cta {
+  background: var(--orange); color: #fff; border: none;
+  padding: .6rem 1.6rem; font-family: 'Heebo', sans-serif;
+  font-size: .88rem; font-weight: 700; cursor: pointer; transition: background .2s;
+}
+.nav-cta:hover { background: var(--orange2); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding-top: 64px; overflow: hidden;
+}
+.hero-text { padding: 5rem 3rem 5rem 4rem; position: relative; z-index: 2; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: .5rem;
+  border: 1px solid rgba(255,69,0,.5); color: var(--orange);
+  font-size: .72rem; font-weight: 700; letter-spacing: .15em;
+  text-transform: uppercase; padding: .4rem 1rem; margin-bottom: 1.8rem;
+}
+.tag-dot { width: 7px; height: 7px; background: var(--orange); border-radius: 50%; animation: blink 1.4s infinite; }
+h1 { font-size: clamp(2.8rem,4vw,4rem); font-weight: 900; line-height: 1.02; margin-bottom: 1.5rem; }
+h1 em { color: var(--orange); font-style: normal; display: block; }
+.hero-desc { font-size: 1.05rem; font-weight: 300; color: #999; line-height: 1.8; max-width: 400px; margin-bottom: 2.5rem; }
+.btns { display: flex; gap: 1rem; align-items: center; margin-bottom: 3rem; }
+.btn-primary {
+  background: var(--orange); color: #fff; border: none;
+  padding: 1rem 2rem; font-family: 'Heebo', sans-serif;
+  font-size: 1rem; font-weight: 700; cursor: pointer;
+  box-shadow: 0 4px 20px rgba(255,69,0,.35); transition: transform .2s, box-shadow .2s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,69,0,.45); }
+.btn-outline {
+  background: transparent; color: var(--white); border: 1px solid #2a2a2a;
+  padding: 1rem 2rem; font-family: 'Heebo', sans-serif; font-size: 1rem; font-weight: 400;
+  cursor: pointer; transition: border-color .2s, color .2s;
+}
+.btn-outline:hover { border-color: var(--orange); color: var(--orange); }
+.stats-row { display: flex; border: 1px solid var(--border); }
+.stat { flex: 1; padding: 1.3rem 1rem; text-align: center; border-left: 1px solid var(--border); }
+.stat:last-child { border-left: none; }
+.stat-n { font-size: 1.8rem; font-weight: 900; background: linear-gradient(135deg,var(--orange),var(--orange2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.stat-l { font-size: .73rem; color: var(--muted); margin-top: .15rem; }
+
+.hero-visual { position: relative; height: 100vh; overflow: hidden; }
+.hero-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: brightness(.7) contrast(1.1); }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to left, transparent 30%, var(--black) 100%),
+              linear-gradient(to top, rgba(7,7,7,.8) 0%, transparent 50%);
+}
+.float-card {
+  position: absolute; background: rgba(10,10,10,.88);
+  backdrop-filter: blur(12px); border: 1px solid var(--border); padding: .9rem 1.2rem;
+}
+.fc-1 { bottom: 2rem; right: 2rem; }
+.fc-2 { top: 6rem; left: 2rem; }
+.fc-label { font-size: .68rem; color: var(--muted); margin-bottom: .3rem; }
+.fc-value { font-size: 1.1rem; font-weight: 900; }
+.fc-orange { color: var(--orange); }
+.fc-green { color: #22c55e; }
+.fc-sub { font-size: .7rem; color: var(--muted); }
+.live-badge { display: flex; align-items: center; gap: .4rem; font-size: .7rem; font-weight: 700; color: #22c55e; margin-top: .4rem; }
+.live-dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; animation: blink 1.2s infinite; }
+
+/* PROOF */
+.proof-strip {
+  background: var(--gray); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  padding: 1.8rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+}
+.proof-item { display: flex; align-items: center; gap: .7rem; font-size: .88rem; }
+.proof-icon { font-size: 1.2rem; }
+.proof-text strong { display: block; font-weight: 700; font-size: .9rem; }
+.proof-text span { color: var(--muted); font-size: .8rem; }
+.proof-div { width: 1px; height: 32px; background: var(--border); }
+
+/* GALLERY */
+.gallery-section { padding: 6rem 3rem; }
+.sec-label { font-size: .72rem; font-weight: 700; letter-spacing: .2em; color: var(--orange); text-transform: uppercase; margin-bottom: .8rem; }
+.sec-title { font-size: clamp(1.7rem,2.8vw,2.4rem); font-weight: 900; margin-bottom: 3rem; line-height: 1.12; }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-rows: 260px 260px;
+  gap: 10px;
+}
+.g-item { position: relative; overflow: hidden; }
+.g-item.tall { grid-row: span 2; }
+.g-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; filter: brightness(.82); }
+.g-item:hover img { transform: scale(1.06); filter: brightness(.95); }
+.g-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(7,7,7,.9) 0%, transparent 100%);
+  padding: 1.5rem .8rem .7rem; font-size: .8rem; font-weight: 700;
+  opacity: 0; transition: opacity .3s;
+}
+.g-item:hover .g-label { opacity: 1; }
+
+/* SERVICES */
+.services-section { padding: 6rem 3rem; background: #050505; }
+.services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); }
+.svc { background: #050505; padding: 2.5rem 2rem; position: relative; overflow: hidden; transition: background .25s; }
+.svc::before {
+  content: ''; position: absolute; top: 0; right: 0;
+  width: 0; height: 3px; background: linear-gradient(90deg,transparent,var(--orange));
+  transition: width .4s;
+}
+.svc:hover::before { width: 100%; }
+.svc:hover { background: #0a0a0a; }
+.svc-num { font-size: .65rem; font-weight: 900; color: var(--orange); letter-spacing: .2em; margin-bottom: 1rem; }
+.svc-emoji { font-size: 2.2rem; margin-bottom: 1rem; }
+.svc-title { font-size: 1.15rem; font-weight: 700; margin-bottom: .7rem; }
+.svc-desc { font-size: .9rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.2rem; }
+.svc-price { font-size: .8rem; color: var(--orange); font-weight: 700; }
+
+/* REVIEWS */
+.reviews-section { padding: 6rem 3rem; }
+.reviews-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
+.rating-big { text-align: left; }
+.rating-num { font-size: 4rem; font-weight: 900; line-height: 1; color: var(--orange); }
+.rating-stars { color: var(--orange); font-size: 1.2rem; letter-spacing: .1em; }
+.rating-total { font-size: .8rem; color: var(--muted); margin-top: .3rem; }
+.reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.review-card { border: 1px solid var(--border); padding: 1.8rem; transition: border-color .25s, transform .25s; }
+.review-card:hover { border-color: rgba(255,69,0,.3); transform: translateY(-3px); }
+.rv-stars { color: var(--orange); font-size: .85rem; margin-bottom: 1rem; }
+.rv-text { font-size: .9rem; color: #bbb; line-height: 1.7; margin-bottom: 1.5rem; font-style: italic; }
+.rv-author { display: flex; align-items: center; gap: .8rem; }
+.rv-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(135deg,var(--orange),var(--orange2));
+  display: flex; align-items: center; justify-content: center;
+  font-size: .85rem; font-weight: 900; flex-shrink: 0;
+}
+.rv-name { font-size: .85rem; font-weight: 700; }
+.rv-meta { font-size: .75rem; color: var(--muted); }
+
+/* CTA */
+.cta-section { padding: 7rem 3rem; text-align: center; position: relative; overflow: hidden; }
+.cta-section::before {
+  content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 800px; height: 600px;
+  background: radial-gradient(ellipse, rgba(255,69,0,.055) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-tag { font-size: .72rem; font-weight: 700; letter-spacing: .2em; color: var(--orange); text-transform: uppercase; margin-bottom: 1rem; }
+.cta-section h2 { font-size: clamp(1.8rem,3.5vw,2.8rem); font-weight: 900; margin-bottom: 1rem; line-height: 1.15; }
+.cta-section p { color: var(--muted); margin-bottom: 2.5rem; font-size: 1rem; }
+.cta-form { display: flex; gap: 0; max-width: 420px; margin: 0 auto 1.2rem; }
+.cta-form input {
+  flex: 1; padding: 1rem 1.2rem;
+  background: #0e0e0e; border: 1px solid var(--border); border-left: none;
+  color: var(--white); font-family: 'Heebo', sans-serif; font-size: .95rem; outline: none; transition: border-color .2s;
+}
+.cta-form input:focus { border-color: var(--orange); }
+.cta-form button {
+  background: var(--orange); color: #fff; border: none; padding: 1rem 1.8rem;
+  font-family: 'Heebo', sans-serif; font-size: .95rem; font-weight: 700; cursor: pointer; white-space: nowrap; transition: background .2s;
+}
+.cta-form button:hover { background: var(--orange2); }
+.cta-guarantee { font-size: .8rem; color: var(--muted); }
+.cta-guarantee span { color: #22c55e; }
+
+footer {
+  padding: 1.8rem 3rem; border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: .78rem; color: var(--muted);
+}
+footer a { color: var(--orange); text-decoration: none; }
+
+@keyframes blink { 0%,100%{opacity:1;}50%{opacity:.3;} }
+.fade-up { opacity:0; transform:translateY(30px); transition:opacity .7s,transform .7s; }
+.fade-up.visible { opacity:1; transform:translateY(0); }
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;}
+  .hero-visual{height:55vw;min-height:260px;}
+  .hero-text{padding:2rem 1.5rem;}
+  nav{padding:1rem 1.5rem;}
+  .proof-div{display:none;}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
+  .g-item.tall{grid-row:span 1;}
+  .services-grid,.reviews-grid{grid-template-columns:1fr;}
+  .gallery-section,.services-section,.reviews-section{padding:3rem 1.5rem;}
+  .reviews-header{flex-direction:column;gap:1rem;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">דני <span>כהן</span> · מאמן כושר</div>
+  <button class="nav-cta">פגישת היכרות חינם ←</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-tag"><div class="tag-dot"></div>מאמן כושר אישי מוסמך · חיפה</div>
+    <h1>הגוף שרצית<em>סוף סוף בשבילך</em></h1>
+    <p class="hero-desc">תוכנית אימונים שמותאמת לחיים שלך, לא לחיים של מישהו אחר. בלי דיאטות מטורפות, בלי שעות אינסופיות בחדר כושר.</p>
+    <div class="btns">
+      <button class="btn-primary">קבע פגישת היכרות ←</button>
+      <button class="btn-outline">צפה בתוצאות</button>
+    </div>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-n">200+</div><div class="stat-l">לקוחות</div></div>
+      <div class="stat"><div class="stat-n">8</div><div class="stat-l">שנות ניסיון</div></div>
+      <div class="stat"><div class="stat-n">97%</div><div class="stat-l">ממשיכים</div></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <img class="hero-img"
+      src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&q=85&auto=format&fit=crop"
+      alt="אימון כושר"
+      onerror="this.src='https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=900&q=80'">
+    <div class="hero-overlay"></div>
+    <div class="float-card fc-1">
+      <div class="fc-label">תוצאה ממוצעת</div>
+      <div class="fc-value fc-orange">−12 ק"ג</div>
+      <div class="fc-sub">תוך 90 יום</div>
+    </div>
+    <div class="float-card fc-2">
+      <div class="fc-label">סטטוס</div>
+      <div class="fc-value fc-green">זמין לפגישות</div>
+      <div class="live-badge"><div class="live-dot"></div>קיבולת מוגבלת</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<div class="proof-strip">
+  <div class="proof-item"><div class="proof-icon">🏅</div><div class="proof-text"><strong>מוסמך IFBB</strong><span>הסמכה בינלאומית</span></div></div>
+  <div class="proof-div"></div>
+  <div class="proof-item"><div class="proof-icon">⭐</div><div class="proof-text"><strong>דירוג 4.9/5</strong><span>מ-180+ ביקורות</span></div></div>
+  <div class="proof-div"></div>
+  <div class="proof-item"><div class="proof-icon">🔄</div><div class="proof-text"><strong>97% ממשיכים</strong><span>מעל 3 חודשים</span></div></div>
+  <div class="proof-div"></div>
+  <div class="proof-item"><div class="proof-icon">✅</div><div class="proof-text"><strong>החזר כסף</strong><span>ב-90 יום ללא שאלות</span></div></div>
+  <div class="proof-div"></div>
+  <div class="proof-item"><div class="proof-icon">📍</div><div class="proof-text"><strong>חיפה והסביבה</strong><span>+ אימונים אונליין</span></div></div>
+</div>
+
+<!-- GALLERY -->
+<section class="gallery-section fade-up">
+  <div class="sec-label">אימונים אמיתיים</div>
+  <div class="sec-title">כך נראה האימון שלנו</div>
+  <div class="gallery-grid">
+    <div class="g-item tall">
+      <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80&auto=format&fit=crop" alt="אימון כוח" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a'">
+      <div class="g-label">אימון כוח</div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=500&q=80&auto=format&fit=crop" alt="אימון פונקציונלי" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a'">
+      <div class="g-label">אימון פונקציונלי</div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=500&q=80&auto=format&fit=crop" alt="הרמת משקולות" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a'">
+      <div class="g-label">הרמת משקולות</div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=500&q=80&auto=format&fit=crop" alt="קרדיו" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a'">
+      <div class="g-label">קרדיו</div>
+    </div>
+    <div class="g-item">
+      <img src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=500&q=80&auto=format&fit=crop" alt="גמישות" loading="lazy" onerror="this.parentElement.style.background='#1a1a1a'">
+      <div class="g-label">גמישות ושחרור</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section fade-up">
+  <div class="sec-label">מה מקבלים</div>
+  <div class="sec-title">שלוש תוכניות. תוצאה אחת.</div>
+  <div class="services-grid">
+    <div class="svc">
+      <div class="svc-num">01</div>
+      <div class="svc-emoji">🏋️</div>
+      <div class="svc-title">אימון אישי פרטי</div>
+      <div class="svc-desc">אחד על אחד, בחדר כושר או בבית. תוכנית שנבנית עליך ומשתנה כל שבוע לפי ההתקדמות.</div>
+      <div class="svc-price">מ-₪280 לאימון</div>
+    </div>
+    <div class="svc">
+      <div class="svc-num">02</div>
+      <div class="svc-emoji">🥗</div>
+      <div class="svc-title">ייעוץ תזונה</div>
+      <div class="svc-desc">לא דיאטה. בניית הרגלי אכילה שאפשר לחיות איתם לאורך זמן ועדיין לראות תוצאות.</div>
+      <div class="svc-price">מ-₪350 לחודש</div>
+    </div>
+    <div class="svc">
+      <div class="svc-num">03</div>
+      <div class="svc-emoji">📱</div>
+      <div class="svc-title">ליווי אונליין</div>
+      <div class="svc-desc">מעקב שבועי, תוכנית מסודרת וזמינות ישירה בווטסאפ — מכל מקום בארץ.</div>
+      <div class="svc-price">מ-₪490 לחודש</div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section fade-up">
+  <div class="reviews-header">
+    <div>
+      <div class="sec-label">ביקורות</div>
+      <div class="sec-title" style="margin-bottom:0">מה אומרים הלקוחות</div>
+    </div>
+    <div class="rating-big">
+      <div class="rating-num">4.9</div>
+      <div class="rating-stars">★★★★★</div>
+      <div class="rating-total">180+ ביקורות</div>
+    </div>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-text">"ירדתי 14 ק"ג תוך 4 חודשים, ובלי להרגיש שאני על דיאטה. דני מבין שכל אחד שונה."</div>
+      <div class="rv-author"><div class="rv-avatar">מ</div><div><div class="rv-name">מיכל ר.</div><div class="rv-meta">חיפה · ירדה 14 ק"ג</div></div></div>
+    </div>
+    <div class="review-card">
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-text">"חזרתי לאימונים אחרי פציעה. אחרי 3 חודשים אני חזק יותר מלפני הפציעה."</div>
+      <div class="rv-author"><div class="rv-avatar">א</div><div><div class="rv-name">אורי מ.</div><div class="rv-meta">קריות · חזרה לכושר</div></div></div>
+    </div>
+    <div class="review-card">
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-text">"עבדתי עם שלושה מאמנים לפני. הפעם הראשונה שאני ממשיכה מעל שלושה חודשים."</div>
+      <div class="rv-author"><div class="rv-avatar">ש</div><div><div class="rv-name">שירה כ.</div><div class="rv-meta">נשר · 6 חודשים רצוף</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section fade-up">
+  <div class="cta-tag">מוכן להתחיל?</div>
+  <h2>פגישת היכרות —<br>בחינם, ללא התחייבות</h2>
+  <p>השאר מספר ואחזור אליך תוך שעה</p>
+  <div class="cta-form">
+    <input type="tel" placeholder="מספר טלפון" />
+    <button>שלח ←</button>
+  </div>
+  <div class="cta-guarantee">
+    <span>✓ ללא התחייבות</span> &nbsp;·&nbsp;
+    <span>✓ מענה תוך שעה</span> &nbsp;·&nbsp;
+    <span>✓ החזר כסף ב-90 יום</span>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 דני כהן פיטנס · חיפה</span>
+  <span>עוצב על ידי <a href="#">AIFlow Studio</a></span>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.12});
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
