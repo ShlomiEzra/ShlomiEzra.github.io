@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרימיום דיגיטל | תוכן שיווקי ואוטומציה מבוססי AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black: #070707;
+  --white: #f4f1eb;
+  --orange: #ff4500;
+  --orange2: #ff7000;
+  --gray: #0f0f0f;
+  --border: #1c1c1c;
+  --muted: #666;
+  --green: #25d366;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Heebo', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; direction: rtl; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 200;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 3rem;
+  background: rgba(7,7,7,0.94); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.logo { font-size: 1rem; font-weight: 900; letter-spacing: .02em; }
+.logo span { color: var(--orange); }
+.nav-wa {
+  display: flex; align-items: center; gap: .5rem;
+  background: var(--green); color: #fff; border: none;
+  padding: .55rem 1.4rem; font-family: 'Heebo', sans-serif;
+  font-size: .88rem; font-weight: 700; cursor: pointer;
+  text-decoration: none; transition: opacity .2s;
+}
+.nav-wa:hover { opacity: .88; }
+.nav-wa svg { width: 16px; height: 16px; fill: #fff; }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 9rem 3rem 5rem;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -20%; right: -10%;
+  width: 70vw; height: 80vh;
+  background: radial-gradient(ellipse, rgba(255,69,0,.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(255,255,255,.012) 80px),
+              repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(255,255,255,.012) 80px);
+  pointer-events: none;
+}
+.hero-inner { position: relative; z-index: 2; max-width: 680px; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: .5rem;
+  border: 1px solid rgba(255,69,0,.4); color: var(--orange);
+  font-size: .7rem; font-weight: 700; letter-spacing: .18em;
+  text-transform: uppercase; padding: .38rem .9rem; margin-bottom: 2rem;
+}
+.tag-dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; animation: blink 1.5s infinite; }
+h1 { font-size: clamp(3rem, 5.5vw, 5rem); font-weight: 900; line-height: 1.0; margin-bottom: 1.6rem; }
+h1 em { color: var(--orange); font-style: normal; }
+h1 .line2 { display: block; font-size: clamp(1.6rem, 2.8vw, 2.6rem); font-weight: 300; color: #888; margin-top: .4rem; }
+.hero-desc { font-size: 1.1rem; font-weight: 300; color: #999; line-height: 1.8; max-width: 520px; margin-bottom: 2.8rem; }
+
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 4rem; }
+.btn-wa {
+  display: flex; align-items: center; gap: .6rem;
+  background: var(--green); color: #fff; border: none;
+  padding: 1rem 2rem; font-family: 'Heebo', sans-serif;
+  font-size: 1rem; font-weight: 700; cursor: pointer; text-decoration: none;
+  box-shadow: 0 4px 24px rgba(37,211,102,.3);
+  transition: transform .2s, box-shadow .2s;
+}
+.btn-wa:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(37,211,102,.4); }
+.btn-wa svg { width: 20px; height: 20px; fill: #fff; }
+.btn-mail {
+  display: flex; align-items: center; gap: .6rem;
+  background: transparent; color: var(--white);
+  border: 1px solid var(--border); padding: 1rem 2rem;
+  font-family: 'Heebo', sans-serif; font-size: 1rem; font-weight: 400;
+  cursor: pointer; text-decoration: none;
+  transition: border-color .2s, color .2s;
+}
+.btn-mail:hover { border-color: var(--orange); color: var(--orange); }
+
+/* trust strip */
+.trust { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+.trust-item { display: flex; align-items: center; gap: .5rem; font-size: .82rem; color: #777; }
+.trust-item span { color: var(--white); font-weight: 600; }
+
+/* SERVICES */
+.services-section { padding: 7rem 3rem; }
+.sec-label { font-size: .7rem; font-weight: 700; letter-spacing: .2em; color: var(--orange); text-transform: uppercase; margin-bottom: .8rem; }
+.sec-title { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 900; line-height: 1.1; margin-bottom: .8rem; }
+.sec-sub { font-size: 1rem; color: var(--muted); margin-bottom: 3.5rem; max-width: 500px; line-height: 1.6; }
+
+.services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
+.svc {
+  background: var(--black); padding: 3rem 2.5rem;
+  position: relative; overflow: hidden; transition: background .25s;
+}
+.svc::after {
+  content: ''; position: absolute; bottom: 0; right: 0;
+  width: 0; height: 2px;
+  background: linear-gradient(270deg, var(--orange), transparent);
+  transition: width .4s ease;
+}
+.svc:hover::after { width: 100%; }
+.svc:hover { background: #0b0b0b; }
+.svc-num { font-size: .65rem; font-weight: 900; color: var(--orange); letter-spacing: .2em; margin-bottom: 1.2rem; }
+.svc-emoji { font-size: 2.4rem; margin-bottom: 1.2rem; }
+.svc-title { font-size: 1.25rem; font-weight: 700; margin-bottom: .8rem; }
+.svc-desc { font-size: .92rem; color: var(--muted); line-height: 1.75; margin-bottom: 1.5rem; }
+.svc-tags { display: flex; gap: .5rem; flex-wrap: wrap; }
+.tag {
+  font-size: .68rem; font-weight: 600; letter-spacing: .08em;
+  border: 1px solid #222; color: #777;
+  padding: .25rem .65rem; border-radius: 2px;
+}
+
+/* PORTFOLIO */
+.portfolio-section { padding: 6rem 3rem; background: #050505; border-top: 1px solid var(--border); }
+.portfolio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.portfolio-card {
+  border: 1px solid var(--border); overflow: hidden;
+  transition: border-color .25s, transform .25s;
+  display: block; text-decoration: none; color: inherit;
+}
+.portfolio-card:hover { border-color: rgba(255,69,0,.35); transform: translateY(-3px); }
+.portfolio-img {
+  height: 220px; background: var(--gray);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; position: relative;
+}
+.portfolio-img iframe {
+  width: 200%; height: 200%;
+  transform: scale(.5); transform-origin: top right;
+  border: none; pointer-events: none;
+}
+.portfolio-img .p-label {
+  position: absolute; top: 1rem; right: 1rem;
+  background: var(--orange); color: #fff;
+  font-size: .65rem; font-weight: 700; letter-spacing: .1em;
+  padding: .25rem .7rem; text-transform: uppercase;
+}
+.portfolio-body { padding: 1.5rem; }
+.portfolio-title { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+.portfolio-desc { font-size: .85rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+.portfolio-link { font-size: .8rem; color: var(--orange); font-weight: 600; }
+
+/* PROCESS */
+.process-section { padding: 6rem 3rem; border-top: 1px solid var(--border); }
+.steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; margin-top: 3rem; }
+.step { padding: 2rem 1.5rem; border-right: 1px solid var(--border); }
+.step:last-child { border-right: none; }
+.step-n {
+  font-size: 3.5rem; font-weight: 900; line-height: 1;
+  background: linear-gradient(135deg, var(--orange), var(--orange2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  opacity: .35; margin-bottom: .8rem;
+}
+.step-title { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+.step-desc { font-size: .85rem; color: var(--muted); line-height: 1.65; }
+
+/* CONTACT */
+.contact-section {
+  padding: 7rem 3rem; text-align: center;
+  position: relative; overflow: hidden;
+}
+.contact-section::before {
+  content: '';
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 700px; height: 600px;
+  background: radial-gradient(ellipse, rgba(255,69,0,.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.contact-inner { position: relative; z-index: 2; max-width: 540px; margin: 0 auto; }
+.contact-section .sec-label { justify-content: center; }
+.contact-section h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; margin-bottom: 1rem; line-height: 1.1; }
+.contact-section p { color: var(--muted); margin-bottom: 3rem; font-size: 1rem; line-height: 1.7; }
+
+.contact-btns { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.big-wa {
+  display: flex; align-items: center; justify-content: center; gap: .8rem;
+  background: var(--green); color: #fff;
+  padding: 1.2rem 3rem; font-family: 'Heebo', sans-serif;
+  font-size: 1.1rem; font-weight: 700; text-decoration: none; width: 100%;
+  box-shadow: 0 6px 28px rgba(37,211,102,.35);
+  transition: transform .2s, box-shadow .2s;
+}
+.big-wa:hover { transform: translateY(-2px); box-shadow: 0 10px 36px rgba(37,211,102,.45); }
+.big-wa svg { width: 22px; height: 22px; fill: #fff; }
+.big-mail {
+  display: flex; align-items: center; justify-content: center; gap: .8rem;
+  background: transparent; color: var(--white);
+  border: 1px solid var(--border); padding: 1rem 3rem;
+  font-family: 'Heebo', sans-serif; font-size: 1rem; font-weight: 400;
+  text-decoration: none; width: 100%;
+  transition: border-color .2s, color .2s;
+}
+.big-mail:hover { border-color: var(--orange); color: var(--orange); }
+.response-note { font-size: .78rem; color: var(--muted); margin-top: 1rem; }
+.response-note span { color: var(--green); }
+
+/* FOOTER */
+footer {
+  padding: 1.8rem 3rem; border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: .78rem; color: #444;
+}
+footer a { color: var(--orange); text-decoration: none; }
+
+/* ANIMATIONS */
+@keyframes blink { 0%,100%{opacity:1;}50%{opacity:.25;} }
+.fade-up { opacity:0; transform:translateY(28px); transition:opacity .7s,transform .7s; }
+.fade-up.visible { opacity:1; transform:translateY(0); }
+
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem;}
+  .hero{padding:7rem 1.5rem 4rem;}
+  .services-grid,.portfolio-grid,.steps{grid-template-columns:1fr;}
+  .step{border-right:none;border-bottom:1px solid var(--border);padding:1.5rem 0;}
+  .step:last-child{border-bottom:none;}
+  .services-section,.portfolio-section,.process-section,.contact-section{padding:4rem 1.5rem;}
+  footer{flex-direction:column;gap:.5rem;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">פרימיום <span>דיגיטל</span></div>
+  <a class="nav-wa" href="https://wa.me/972543206475?text=היי,%20ראיתי%20את%20האתר%20שלך%20ורציתי%20לשמוע%20פרטים" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    שלח ווטסאפ
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag"><div class="tag-dot"></div>AI · שיווק · אוטומציה · ישראל</div>
+    <h1>
+      תוכן שמוכר.<br>
+      <em>אוטומציה שחוסכת.</em>
+      <span class="line2">לעסקים ישראלים שרוצים לצמוח.</span>
+    </h1>
+    <p class="hero-desc">אני עוזר לעסקים קטנים ובינוניים לחסוך זמן ולמכור יותר — באמצעות תוכן שיווקי מדויק ואוטומציות חכמות מבוססי AI.</p>
+    <div class="hero-btns">
+      <a class="btn-wa" href="https://wa.me/972543206475?text=היי,%20ראיתי%20את%20האתר%20שלך%20ורציתי%20לשמוע%20פרטים" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        דברו איתי בווטסאפ
+      </a>
+      <a class="btn-mail" href="mailto:premium.digital24@gmail.com">
+        📧 שלח מייל
+      </a>
+    </div>
+    <div class="trust">
+      <div class="trust-item">✓ <span>ניסיון בבניית SaaS</span></div>
+      <div class="trust-item">✓ <span>עברית מלאה · RTL</span></div>
+      <div class="trust-item">✓ <span>תוצר מוכן לשימוש</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section fade-up">
+  <div class="sec-label">מה אני עושה</div>
+  <div class="sec-title">שני שירותים. תוצאה אחת.</div>
+  <div class="sec-sub">כל עסק צריך תוכן שמושך לקוחות ותהליכים שחוסכים זמן — אני עושה את שניהם.</div>
+  <div class="services-grid">
+    <div class="svc">
+      <div class="svc-num">01</div>
+      <div class="svc-emoji">✍️</div>
+      <div class="svc-title">תוכן שיווקי מבוסס AI</div>
+      <div class="svc-desc">דפי נחיתה, פוסטים ל-LinkedIn, תיאורי מוצר, ניוזלטרים ותסריטי מכירה — תוכן שנכתב עם הבנה עסקית אמיתית, לא רק מילים יפות.</div>
+      <div class="svc-tags">
+        <span class="tag">דף נחיתה</span>
+        <span class="tag">LinkedIn</span>
+        <span class="tag">קופירייטינג</span>
+        <span class="tag">ניוזלטר</span>
+      </div>
+    </div>
+    <div class="svc">
+      <div class="svc-num">02</div>
+      <div class="svc-emoji">⚙️</div>
+      <div class="svc-title">אוטומציה ובוטים לעסק</div>
+      <div class="svc-desc">בוטים לווטסאפ, תהליכי עבודה אוטומטיים וסקריפטים חוסכי זמן — מותאמים לצרכי העסק הספציפי שלך. בלי צוות טכני פנימי.</div>
+      <div class="svc-tags">
+        <span class="tag">בוט ווטסאפ</span>
+        <span class="tag">אוטומציה</span>
+        <span class="tag">Follow-up</span>
+        <span class="tag">AI</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio-section fade-up">
+  <div class="sec-label">דוגמאות עבודה</div>
+  <div class="sec-title">עבודות לדוגמה</div>
+  <div class="sec-sub" style="margin-bottom:3rem">כל פרויקט נבנה מאפס, מותאם לעסק ולקהל היעד.</div>
+  <div class="portfolio-grid">
+    <a class="portfolio-card" href="https://ShlomiEzra.github.io" target="_blank">
+      <div class="portfolio-img">
+        <div class="p-label">דף נחיתה</div>
+        <iframe src="https://ShlomiEzra.github.io" title="דף נחיתה מאמן כושר" loading="lazy"></iframe>
+      </div>
+      <div class="portfolio-body">
+        <div class="portfolio-title">דף נחיתה — מאמן כושר אישי</div>
+        <div class="portfolio-desc">עיצוב כהה ומקצועי, גלריית תמונות, ביקורות לקוחות וטופס יצירת קשר. RTL מלא.</div>
+        <div class="portfolio-link">צפה בדף החי ←</div>
+      </div>
+    </a>
+    <a class="portfolio-card" href="https://ShlomiEzra.github.io/bot.html" target="_blank">
+      <div class="portfolio-img">
+        <div class="p-label">בוט ווטסאפ</div>
+        <iframe src="https://ShlomiEzra.github.io/bot.html" title="בוט ווטסאפ" loading="lazy"></iframe>
+      </div>
+      <div class="portfolio-body">
+        <div class="portfolio-title">בוט ווטסאפ אוטומטי — חנות פרחים</div>
+        <div class="portfolio-desc">תסריט בוט מלא עם תפריטים, קבלת הזמנות, follow-up אוטומטי ותמיכה מלאה בעברית.</div>
+        <div class="portfolio-link">צפה בדמו החי ←</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section fade-up">
+  <div class="sec-label">איך עובדים</div>
+  <div class="sec-title">4 צעדים מפגישה לתוצאה</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-n">01</div>
+      <div class="step-title">שיחת היכרות</div>
+      <div class="step-desc">15 דקות בווטסאפ — מבינים מה צריך, מה המטרה, ומה התוצר הרצוי.</div>
+    </div>
+    <div class="step">
+      <div class="step-n">02</div>
+      <div class="step-title">הצעת מחיר</div>
+      <div class="step-desc">הצעה מפורטת עם תיאור התוצר, לוח זמנים ותנאי תשלום — תוך 24 שעות.</div>
+    </div>
+    <div class="step">
+      <div class="step-n">03</div>
+      <div class="step-title">ביצוע</div>
+      <div class="step-desc">עבודה מהירה עם עדכונים שוטפים. אין הפתעות, אין עיכובים.</div>
+    </div>
+    <div class="step">
+      <div class="step-n">04</div>
+      <div class="step-title">מסירה ותמיכה</div>
+      <div class="step-desc">תוצר מוכן לשימוש מיידי + תמיכה לאחר המסירה.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section fade-up">
+  <div class="contact-inner">
+    <div class="sec-label">צור קשר</div>
+    <h2>מוכן להתחיל?<br>בוא נדבר.</h2>
+    <p>שלח הודעה קצרה עם מה שאתה צריך — ואחזור אליך תוך שעה בשעות הפעילות.</p>
+    <div class="contact-btns">
+      <a class="big-wa" href="https://wa.me/972543206475?text=היי,%20ראיתי%20את%20האתר%20שלך%20ורציתי%20לשמוע%20פרטים" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        דברו איתי בווטסאפ — 054-3206475
+      </a>
+      <a class="big-mail" href="mailto:premium.digital24@gmail.com">
+        📧 premium.digital24@gmail.com
+      </a>
+      <div class="response-note"><span>✓ מענה תוך שעה</span> בשעות 09:00–20:00</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 פרימיום דיגיטל · שיווק ואוטומציה מבוססי AI</span>
+  <span><a href="mailto:premium.digital24@gmail.com">premium.digital24@gmail.com</a></span>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
